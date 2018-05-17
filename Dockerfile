@@ -18,6 +18,12 @@ COPY *.sh                    /usr/local/bin/
 COPY bin/galera-healthcheck  /usr/local/bin/galera-healthcheck
 COPY primary-component.sql   /
 
+#RUN echo "[mysqld]\n\
+#innodb_large_prefix=true\n\
+#innodb_file_format=barracuda\n\
+#innodb_file_per_table=1" \
+#>> /etc/mysql/my.cnf
+
 # Fix permissions
 RUN chown -R mysql:mysql /etc/mysql && chmod -R go-w /etc/mysql
 
