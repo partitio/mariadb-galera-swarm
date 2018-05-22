@@ -216,6 +216,11 @@ CREATE USER IF NOT EXISTS 'system'@'localhost' IDENTIFIED BY '$SYSTEM_PASSWORD';
 GRANT PROCESS,SHUTDOWN ON *.* TO 'system'@'localhost';
 EOF
 
+    # Create haproxy user for mysql-check
+    cat >> /tmp/bootstrap.sql <<EOF
+CREATE USER 'haproxy'@'%';
+EOF
+
 	# Create xtrabackup user if needed
 	if [[ $SST_METHOD =~ ^xtrabackup ]] ; then
 		cat >>/tmp/bootstrap.sql <<EOF
