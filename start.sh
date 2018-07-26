@@ -197,6 +197,9 @@ then
 
 	# Create 'root' user
 	cat >> /tmp/bootstrap.sql <<EOF
+CREATE USER IF NOT EXISTS 'root'@'%';
+SET PASSWORD FOR 'root'@'%' = PASSWORD('$MYSQL_ROOT_PASSWORD');
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 CREATE USER IF NOT EXISTS 'root'@'127.0.0.1';
 SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('$MYSQL_ROOT_PASSWORD');
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1' WITH GRANT OPTION;
@@ -211,6 +214,11 @@ CREATE USER IF NOT EXISTS 'system'@'127.0.0.1' IDENTIFIED BY '$SYSTEM_PASSWORD';
 GRANT PROCESS,SHUTDOWN ON *.* TO 'system'@'127.0.0.1';
 CREATE USER IF NOT EXISTS 'system'@'localhost' IDENTIFIED BY '$SYSTEM_PASSWORD';
 GRANT PROCESS,SHUTDOWN ON *.* TO 'system'@'localhost';
+EOF
+
+    # Create haproxy user for mysql-check
+    cat >> /tmp/bootstrap.sql <<EOF
+CREATE USER 'haproxy'@'%';
 EOF
 
 	# Create xtrabackup user if needed

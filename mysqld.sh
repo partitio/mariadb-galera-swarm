@@ -117,7 +117,7 @@ else
 		fi
 	fi
 
-	if [[ -z $POSITION ]]; then
+	if [[ -z $POSITION ]]; thenAttempting to recover GTID positon
 		echo "${LOG_MESSAGE} --------------------------------------------------"
 		echo "${LOG_MESSAGE} Attempting to recover GTID positon..."
 
