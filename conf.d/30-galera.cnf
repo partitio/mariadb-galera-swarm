@@ -1,4 +1,5 @@
 [mysqld]
+max_allowed_packet=256M
 bind-address=0.0.0.0
 binlog_format=ROW
 default-storage-engine=innodb
