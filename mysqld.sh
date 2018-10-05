@@ -117,7 +117,7 @@ else
 		fi
 	fi
 
-	if [[ -z $POSITION ]]; thenAttempting to recover GTID positon
+	if [[ -z $POSITION ]]; then
 		echo "${LOG_MESSAGE} --------------------------------------------------"
 		echo "${LOG_MESSAGE} Attempting to recover GTID positon..."
 
@@ -356,4 +356,3 @@ fi
 echo "${LOG_MESSAGE} ---------------------------------------------------------------"
 echo "${LOG_MESSAGE} Starting with options: $OPT $START"
 exec mysqld $OPT $START
-
